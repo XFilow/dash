@@ -467,6 +467,7 @@ bool WalletModel::setWalletEncrypted(bool encrypted, const SecureString &passphr
     if(encrypted)
     {
         // Encrypt
+        Q_EMIT message(tr("Encrypting your wallet..."), tr("This will take just a few seconds."),  CClientUIInterface::MSG_INFORMATION);
         return wallet->EncryptWallet(passphrase);
     }
     else
@@ -481,7 +482,6 @@ bool WalletModel::setWalletLocked(bool locked, const SecureString &passPhrase, b
     if(locked)
     {
         // Lock
-        Q_EMIT message(tr("Encrypting your wallet..."), tr("This will take just a few seconds."),  CClientUIInterface::MSG_INFORMATION);
         return wallet->Lock(fMixing);
     }
     else
